@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Your Report for this day is ..." />
+    <meta name="author" content="geomydas" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./output.css" />
+    <style>
+      @font-face {
+        font-display: swap;
+        font-family: "Rubik";
+        font-style: normal;
+        font-weight: 300;
+        src: url("../fonts/rubik-v28-latin-300.woff2") format("woff2");
+      }
+      @font-face {
+        font-display: swap;
+        font-family: "Rubik";
+        font-style: normal;
+        font-weight: 400;
+        src: url("../fonts/rubik-v28-latin-regular.woff2") format("woff2");
+      }
+      @font-face {
+        font-display: swap;
+        font-family: "Rubik";
+        font-style: normal;
+        font-weight: 500;
+        src: url("../fonts/rubik-v28-latin-500.woff2") format("woff2");
+      }
+    </style>
+    <script src="./script.js" defer></script>
+    <title>Frontend Mentor | Time tracking dashboard</title>
+  </head>
+  <body
+    class="bg-lavender-900 flex min-h-screen flex-col items-center justify-center p-6"
+  >
+    <main
+      class="flex w-full max-w-5xl flex-col gap-6 lg:grid lg:grid-cols-4 lg:grid-rows-2 lg:gap-6"
+      id="main"
+    >
+      <div
+        class="bg-lavender-700 rounded-md p-6 lg:row-span-2 hover:brightness-150 transition "
+      >
+        <div class="">
+          <h1>
+            <span class="">Report for</span
+            ><strong class="">Jeremy Robson</strong>
+          </h1>
+        </div>
+        <ul>
+          <li><button id="toggle-daily">Daily</button></li>
+          <li><button id="toggle-weekly">Weekly</button></li>
+          <li><button id="toggle-monthly">Monthly</button></li>
+        </ul>
+      </div>
+    </main>
+  </body>
+</html>
