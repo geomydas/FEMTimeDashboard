@@ -8,57 +8,113 @@ fetch("../data.json")
     return request.json();
   })
   .then((data) => {
-    console.log(data);
     for (const item in data) {
       const main = document.querySelector("#main");
+      const dashboardSection = document.createElement("li");
+      const daily = document.querySelectorAll(".daily");
+      const weekly = document.querySelectorAll(".weekly");
+      const monthly = document.querySelectorAll(".monthly");
       const toggleDaily = document.querySelector("#toggle-daily");
       const toggleWeekly = document.querySelector("#toggle-weekly");
       const toggleMonthly = document.querySelector("#toggle-monthly");
-      const div = document.createElement("div");
-      const title = document.createElement("h2");
-      const currentDaily = document.createElement("p");
-      const previousDaily = document.createElement("p");
-      const currentWeekly = document.createElement("p");
-      const previousWeekly = document.createElement("p");
-      const currentMonthly = document.createElement("p");
-      const previousMonthly = document.createElement("p");
       const time = data[item].timeframes;
-      const hour = "hrs";
-      title.textContent = data[item].title;
+      const title = data[item].title;
 
-      currentDaily.textContent = time.daily.current + hour;
-      previousDaily.textContent = "Last Day - " + time.daily.previous + hour;
-      currentWeekly.textContent = time.weekly.current + hour;
-      previousWeekly.textContent = "Last Week - " + time.weekly.previous + hour;
-      currentMonthly.textContent = time.monthly.current + hour;
-      previousMonthly.textContent =
-        "Last Month - " + time.monthly.previous + hour;
+      main.appendChild(dashboardSection);
+      dashboardSection.innerHTML = /* HTML */ `
+        <div
+          class="bg-lavender-700 rounded-md p-6 transition hover:brightness-125"
+        >
+        <img src="../images/icon-${title.toLowerCase()}.svg">
+          <div class="flex items-center justify-between mb-2">
+            <h2 class="font-rubik font-medium text-white">${title}</h2>
+            <img src="../images/icon-ellipsis.svg">
+          </div>
+          <div class="daily flex justify-between items-center">
+            <p class="font-rubik font-light text-white text-4xl">
+              <span class="sr-only">Current - </span>${time.daily.current}hrs
+            </p>
+            <p class="font-rubik  text-lavender-100 font-normal ">Last Day - ${time.daily.previous}hrs</p>
+          </div>
+          <div class="weekly hidden justify-between items-center">
+            <p class="font-rubik font-light text-white text-4xl">
+              <span class="sr-only">Current - </span>${time.weekly.current}hrs
+            </p>
+            <p class="font-rubik  text-lavender-100 font-normal ">Last Week - ${time.weekly.previous}hrs</p>
+          </div>
+          <div class="monthly hidden justify-between items-center">
+            <p class="font-rubik font-light text-white text-4xl">
+              <span class="sr-only">Current - </span>${time.monthly.current}hrs
+            </p>
+            <p class="font-rubik  text-lavender-100 font-normal ">Last Month - ${time.monthly.previous}hrs</p>
+          </div>
+        </div>
+      `;
 
-      div.classList.add(
-        "bg-lavender-700",
-        "rounded-md",
-        "p-6",
-        "hover:brightness-150",
-        "transition",
-      );
+      toggleDaily.onclick = function () {
+        toggleDaily.classList.add("border-green-400");
+        toggleDaily.classList.remove("border-red-400");
+        toggleWeekly.classList.add("border-red-400");
+        toggleWeekly.classList.remove("border-green-400");
+        toggleMonthly.classList.add("border-red-400");
+        toggleMonthly.classList.remove("border-green-400");
 
-      currentDaily.classList.add("daily");
-      previousDaily.classList.add("daily");
-      currentWeekly.classList.add("weekly");
-      previousWeekly.classList.add("weekly");
-      currentMonthly.classList.add("monthly");
-      previousMonthly.classList.add("monthly");
+        for (const element of daily) {
+          element.classList.add("flex");
+          element.classList.remove("hidden");
+        }
+        for (const element of weekly) {
+          element.classList.add("hidden");
+          element.classList.remove("flex");
+        }
+        for (const element of monthly) {
+          element.classList.add("hidden");
+          element.classList.remove("flex");
+        }
+      };
 
-      main.appendChild(div);
-      div.appendChild(title);
-      div.appendChild(currentDaily);
-      div.appendChild(previousDaily);
-      div.appendChild(currentWeekly);
-      div.appendChild(previousWeekly);
-      div.appendChild(currentMonthly);
-      div.appendChild(previousMonthly);
+      toggleWeekly.onclick = function () {
+        toggleDaily.classList.add("border-red-400");
+        toggleDaily.classList.remove("border-green-400");
+        toggleWeekly.classList.add("border-green-400");
+        toggleWeekly.classList.remove("border-red-400");
+        toggleMonthly.classList.add("border-red-400");
+        toggleMonthly.classList.remove("border-green-400");
+
+        for (const element of daily) {
+          element.classList.add("hidden");
+          element.classList.remove("flex");
+        }
+        for (const element of weekly) {
+          element.classList.add("flex");
+          element.classList.remove("hidden");
+        }
+        for (const element of monthly) {
+          element.classList.add("hidden");
+          element.classList.remove("flex");
+        }
+      };
+
+      toggleMonthly.onclick = function () {
+        toggleDaily.classList.add("border-red-400");
+        toggleDaily.classList.remove("border-green-400");
+        toggleWeekly.classList.add("border-red-400");
+        toggleWeekly.classList.remove("border-green-400");
+        toggleMonthly.classList.add("border-green-400");
+        toggleMonthly.classList.remove("border-red-400");
+
+        for (const element of daily) {
+          element.classList.add("hidden");
+          element.classList.remove("flex");
+        }
+        for (const element of weekly) {
+          element.classList.add("hidden");
+          element.classList.remove("flex");
+        }
+        for (const element of monthly) {
+          element.classList.add("flex");
+          element.classList.remove("hidden");
+        }
+      };
     }
-    toggleDaily.addEventListener("click", function () {
-      document.body.style.background = "red";
-    });
   });

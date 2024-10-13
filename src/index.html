@@ -38,28 +38,38 @@
     <script src="./script.js" defer></script>
     <title>Frontend Mentor | Time tracking dashboard</title>
   </head>
-  <body
-    class="bg-lavender-900 flex min-h-screen flex-col items-center justify-center p-6"
-  >
-    <main
-      class="flex w-full max-w-5xl flex-col gap-6 lg:grid lg:grid-cols-4 lg:grid-rows-2 lg:gap-6"
-      id="main"
-    >
-      <div
-        class="bg-lavender-700 rounded-md p-6 lg:row-span-2 hover:brightness-150 transition "
-      >
-        <div class="">
-          <h1>
-            <span class="">Report for</span
-            ><strong class="">Jeremy Robson</strong>
-          </h1>
-        </div>
-        <ul>
-          <li><button id="toggle-daily">Daily</button></li>
-          <li><button id="toggle-weekly">Weekly</button></li>
-          <li><button id="toggle-monthly">Monthly</button></li>
-        </ul>
-      </div>
+  <body class="flex min-h-screen flex-col items-center justify-center p-6 bg-lavender-900">
+    <main class="w-full">
+      <ul id="main" class="flex flex-col gap-6 lg:grid lg:grid-cols-4 lg:grid-rows-2">
+        <li>
+          <ul>
+            <li>
+              <button
+                class="border-3 border-solid border-green-400"
+                id="toggle-daily"
+              >
+                Daily
+              </button>
+            </li>
+            <li>
+              <button
+                class="border-3 border-solid border-red-400"
+                id="toggle-weekly"
+              >
+                Weekly
+              </button>
+            </li>
+            <li>
+              <button
+                class="border-3 border-solid border-red-400"
+                id="toggle-monthly"
+              >
+                Monthly
+              </button>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </main>
   </body>
 </html>
